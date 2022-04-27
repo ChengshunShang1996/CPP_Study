@@ -24,13 +24,15 @@ void addPerson(Addressbooks *abs){
         std::string name;
         std::cout << "Please input the name:" << std::endl;
         std::cin >> name;
-        std::cout << "Inputing name" << std::endl;
+        //abs = (struct Addressbooks *)malloc(sizeof(struct Addressbooks));
+        //abs->personArray[abs->m_Size] = (struct Person *)malloc(sizeof(struct Person));
+        abs = new struct Addressbooks;
+        abs->personArray[abs->m_Size] = new struct Person;
         abs->personArray[abs->m_Size]->m_Name = name;
-        std::cout << "Afetr input name" << std::endl;
 
         std::cout << "Please input sexual:" << std::endl;
-        std::cout << "1 -- 男" << std::endl;
-        std::cout << "2 -- 女" << std::endl;
+        std::cout << "1 -- Male" << std::endl;
+        std::cout << "2 -- Female" << std::endl;
 
         //性别
         int sex = 0;
@@ -53,7 +55,9 @@ void addPerson(Addressbooks *abs){
         std::cout << "Please input phone:" << std::endl;
         std::string phone = "";
         std::cin >> phone;
+        std::cout << "Inputing phone" << std::endl;
         abs->personArray[abs->m_Size]->m_Phone = phone;
+        std::cout << "after Inputing phone" << std::endl;
 
         //住址
         std::cout << "Please input address:" << std::endl;
@@ -61,8 +65,13 @@ void addPerson(Addressbooks *abs){
         std::cin >> address;
         abs->personArray[abs->m_Size]->m_Addr = address;
 
+        delete abs->personArray[abs->m_Size];
+        
+
         //更新通讯录人数
         abs->m_Size++;
+
+        delete abs;
 
         std::cout << "Successfully added!" << std::endl;
         system("pause");
@@ -86,6 +95,7 @@ int main(){
 
             case 1:
                 addPerson(&abs);
+                std::cout << "Here" << std::endl;
                 break;
             case 2:
                 break;
