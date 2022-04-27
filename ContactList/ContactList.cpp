@@ -26,8 +26,6 @@ void addPerson(Addressbooks *abs){
         std::cin >> name;
         //abs = (struct Addressbooks *)malloc(sizeof(struct Addressbooks));
         //abs->personArray[abs->m_Size] = (struct Person *)malloc(sizeof(struct Person));
-        abs = new struct Addressbooks;
-        abs->personArray[abs->m_Size] = new struct Person;
         abs->personArray[abs->m_Size]->m_Name = name;
 
         std::cout << "Please input sexual:" << std::endl;
@@ -64,14 +62,9 @@ void addPerson(Addressbooks *abs){
         std::string address;
         std::cin >> address;
         abs->personArray[abs->m_Size]->m_Addr = address;
-
-        delete abs->personArray[abs->m_Size];
         
-
         //更新通讯录人数
         abs->m_Size++;
-
-        delete abs;
 
         std::cout << "Successfully added!" << std::endl;
         system("pause");
@@ -83,18 +76,23 @@ int main(){
 
     int select = 0;
 
-    Addressbooks abs;
-    abs.m_Size = 0;
+    Addressbooks *abs;
+    
+    abs = new struct Addressbooks;
+
+    abs->m_Size = 0;
 
     while (true){
         showMenu();
 
+        std::cout << "Please input your choice:" << std::endl;
         std::cin >> select;
 
         switch (select){
 
             case 1:
-                addPerson(&abs);
+                abs->personArray[abs->m_Size] = new struct Person;
+                addPerson(abs);
                 std::cout << "Here" << std::endl;
                 break;
             case 2:
@@ -119,6 +117,11 @@ int main(){
 
     } // main
 
+    for(int i = 0; i < abs->m_Size + 1; i++){
+        delete abs->personArray[i];
+    }
+    
+    delete abs;
 
     system("pause");
 
