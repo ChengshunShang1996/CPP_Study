@@ -32,7 +32,7 @@ void addPerson(Addressbooks *abs){
         std::cout << "1 -- Male" << std::endl;
         std::cout << "2 -- Female" << std::endl;
 
-        //性别
+        //sex
         int sex = 0;
         while (true){
             std::cin >> sex;
@@ -43,33 +43,48 @@ void addPerson(Addressbooks *abs){
             std::cout << "Wrong. Please input it again" << std::endl;
         }
 
-        //年龄
+        //age
         int age = 0;
         std::cout << "Please input age:" << std::endl;
         std::cin >> age;
         abs->personArray[abs->m_Size]->m_Age = age;
 
-        //电话
+        //phone
         std::cout << "Please input phone:" << std::endl;
         std::string phone = "";
         std::cin >> phone;
-        std::cout << "Inputing phone" << std::endl;
         abs->personArray[abs->m_Size]->m_Phone = phone;
-        std::cout << "after Inputing phone" << std::endl;
 
-        //住址
+        //address
         std::cout << "Please input address:" << std::endl;
         std::string address;
         std::cin >> address;
         abs->personArray[abs->m_Size]->m_Addr = address;
         
-        //更新通讯录人数
+        //add size count
         abs->m_Size++;
 
         std::cout << "Successfully added!" << std::endl;
         system("pause");
         system("cls");
     }
+}
+
+//2. list all the contact information
+void showPerson(Addressbooks *abs){
+    if (abs->m_Size == 0){
+        std::cout << "There is no record" << std::endl;
+    }
+    else{
+        for(int i = 0; i < abs->m_Size; i++){
+            std::cout << "Name:" << abs->personArray[i]->m_Name << "\t";
+            std::cout << "Sex:"  << (abs->personArray[i]->m_Sex == 1 ? "Male" : "Female") << "\t";
+            std::cout << "Phone:" << abs->personArray[i]->m_Phone << std::endl;
+        }
+    } //else
+
+    system("pause");
+    system("cls");
 }
 
 int main(){
@@ -93,9 +108,9 @@ int main(){
             case 1:
                 abs->personArray[abs->m_Size] = new struct Person;
                 addPerson(abs);
-                std::cout << "Here" << std::endl;
                 break;
             case 2:
+                showPerson(abs);
                 break;
             case 3:
                 break;
@@ -117,7 +132,7 @@ int main(){
 
     } // main
 
-    for(int i = 0; i < abs->m_Size + 1; i++){
+    for(int i = 0; i < abs->m_Size; i++){
         delete abs->personArray[i];
     }
     
