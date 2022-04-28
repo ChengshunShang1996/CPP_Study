@@ -54,7 +54,8 @@ dkms.conf
 __pycache__
 
 # build 
-build/*
+Project1_ContactList/build/*
+Project2_StaffManagement/build/*
 
 # Most used editor files
 *.vscode
