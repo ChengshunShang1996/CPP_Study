@@ -87,6 +87,38 @@ void showPerson(Addressbooks *abs){
     system("cls");
 }
 
+//is there the person
+int isExist(Addressbooks *abs, std::string name){
+    for (int i = 0; i < abs->m_Size; i++){
+        if(abs->personArray[i]->m_Name == name){
+            return i;
+        }
+    }
+    return -1;
+}
+
+//delete the person
+void deletePerson(Addressbooks *abs){
+    std::cout << "Please input the name you want del:" << std::endl;
+    std::string name;
+    std::cin >> name;
+
+    int ret = isExist(abs, name);
+    if(ret != -1){
+        for (int i = i; i < abs->m_Size; i++){
+            abs->personArray[i] = abs->personArray[i+1];
+        }
+        abs->m_Size--;
+        std::cout << "Delete successfully!" << std::endl;
+    }
+    else{
+        std::cout << "There is no one called " << name << std::endl;
+    }
+
+    system("pause");
+    system("cls");
+}
+
 int main(){
 
     int select = 0;
@@ -113,6 +145,7 @@ int main(){
                 showPerson(abs);
                 break;
             case 3:
+                deletePerson(abs);
                 break;
             case 4:
                 break;
