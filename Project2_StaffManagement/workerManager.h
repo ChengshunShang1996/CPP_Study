@@ -12,6 +12,8 @@ public:
     //show menu
     void Show_Menu();
 
+    void exitSystem();
+
     //de-construct
     ~WorkerManager();
 };

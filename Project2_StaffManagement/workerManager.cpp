@@ -18,3 +18,9 @@ void WorkerManager::Show_Menu(){
 	cout << "*******************************" << endl;
     cout << endl;
 }
+
+void WorkerManager::exitSystem(){
+	cout << "Hope to see you again" << endl;
+	system("pause");
+	exit(0);
+}
